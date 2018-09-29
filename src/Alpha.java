@@ -2,13 +2,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Alpha {
+	
 	public String msk = "https://api.hh.ru/vacancies?text=java+junior&area=1&per_page=100";
 	public String spb = "https://api.hh.ru/vacancies?text=java+junior&area=2&per_page=100";
 	public String mnsk = "https://api.hh.ru/vacancies?text=java+junior&area=1002&per_page=100";
 	Web web = new Web();
 	static String s_file = "";
-	static ArrayList<String> list = new ArrayList<String>();
-	
+	//static ArrayList<String> list = new ArrayList<String>();
 	static ArrayList<String> vacancies_id = new ArrayList<String>();
 	
 	Alpha() throws ClassNotFoundException, SQLException{
@@ -23,18 +23,19 @@ public class Alpha {
 	}
 //-------------------------CORE OF METHODS--------------------------------------
 	public void extract_id(){
+//..*INPUT_DATA 3 URL ADDRESSES(MSK, SPB, MNSK)
+//..*OUTPUT_DATA ARRAY WITH ID_VACANCIES(ArrayList vacancies_id)
+		
 		System.out.println();
 		System.out.println("..begin of extract_id");
-		System.out.println(web(msk));
-		id(web(msk));
-		System.out.println(web(spb));
-		id(web(spb));
 		
-		System.out.println(web(mnsk));
+		id(web(msk));
+		id(web(spb));
 		id(web(mnsk));
 		
 		System.out.println("..extract_id completed");
 		System.out.println("************************");
+		
 		System.out.println(vacancies_id.size());
 		for(String x : vacancies_id){
 			System.out.println(x);
@@ -53,6 +54,7 @@ public class Alpha {
 		System.out.println("..begin write_db");
 		
 			new Saturn();
+//ЗДЕСЬ ВСЯ КАША ПО ИЗВЛЕЧЕНИЮ ПАРАМЕТРОВ И ЗАПИСИ В ДБ
 		
 		System.out.println("..write_db completed");
 	}
@@ -71,10 +73,6 @@ public class Alpha {
 	public void id(String json){
 //ЗДЕСЬ ВСЯ КАША ПО ИЗВЛЕЧЕНИЮ ID ИЗ ПЕРВИЧНЫХ JSON-ОВ
 		s_file = json;
-		new Jupiter();
-		
-		
+		new Jupiter();	
 	}
-	
-	
-}	
+}
