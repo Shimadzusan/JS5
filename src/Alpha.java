@@ -123,8 +123,8 @@ public void test2() throws ClassNotFoundException, SQLException{
 				Gson js = new Gson();
 				Mars head = js.fromJson(s, Mars.class);
 				
-				//System.out.println(human2.apply_alternate_url);
-				//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				
 				System.out.println("location: " + head.area);
 				System.out.println("enterprise: " + head.employer);
 				
@@ -163,24 +163,19 @@ public void test2() throws ClassNotFoundException, SQLException{
 				String text = "";
 				String time = "";
 				
-				////
-				Conn20 conn = new Conn20();
-				////
+									////
+									Conn20 conn = new Conn20();
+									////
 				
-				//for(int i = 0; i  < 1; i++){
-					//String s = (String) material.get(i);
 					specialization = head.name;
 					location = mesto;
 					experience = phob.name;
 					enterprise = cr.name;
-					//System.out.println(enterprise +"|||"+ i);
 					text = head.description;
 					time = time();
-					//System.out.println("№: " + i +  "| text: " + text);
-					//String i2 = Integer.toString(i + 1);
-					//String s2 = i2 + " " + specialization;
-					/////////////////////////////////////////////DATA BASE/////////////////////////////////////
-					//String id = Integer.toString(i+1);
+					
+/////////////////////////////////////////////DATA BASE/////////////////////////////////////
+					
 					conn.Conn();
 					conn.CreateDB();
 					conn.WriteDB(time, specialization, location, enterprise, experience, text);
@@ -219,7 +214,7 @@ public void test2() throws ClassNotFoundException, SQLException{
 		case 11: moon = "12"; break;
 		}
 		
-		String data_time = year + moon + "0" + day;
+		String data_time = year + moon + day;
 		return data_time;
 	}
 }

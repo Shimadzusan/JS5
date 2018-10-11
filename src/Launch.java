@@ -6,6 +6,8 @@ public class Launch {
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 //02-10-2018 время выполнения: 2 мин. 41 сек.
 // 2 мин. 53 сек.
+// 3 мин. 03 сек.
+// 3 мин. 07 сек. point A of memory 50 Mb, point B 33 Mb (11-10-2018)
 		Date date = new Date();
 		long d1 = date.getTime();
 		
