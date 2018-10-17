@@ -8,6 +8,8 @@ public class Launch {
 // 2 мин. 53 сек.
 // 3 мин. 03 сек.
 // 3 мин. 07 сек. point A of memory 50 Mb, point B 33 Mb (11-10-2018)
+// 3 мин. 39 сек. 15-10-2018
+// 2 мин. 02 сек. 17-10-2018 ...after remove system.out
 		Date date = new Date();
 		long d1 = date.getTime();
 		
