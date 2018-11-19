@@ -22,7 +22,7 @@ public class Conn20 {
 		   
 		   Class.forName("org.sqlite.JDBC");
 		   
-		   conn = DriverManager.getConnection("jdbc:sqlite:DataBase5000.s3db", "root", "123");
+		   conn = DriverManager.getConnection("jdbc:sqlite:js5_data_base.s3db", "root", "123");
 	   }
 	
 	public static void CreateDB() throws ClassNotFoundException, SQLException
@@ -47,8 +47,8 @@ public class Conn20 {
 		
 		statmt.execute(s2);
 		
-		System.out.println();
-		System.out.println("************ WRITED TO DB *************");
+//		System.out.println();
+//		System.out.println(location);
 	
 	}
 	

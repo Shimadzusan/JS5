@@ -1,9 +1,10 @@
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
 import com.google.gson.Gson;
-import testing_area.Web;
+//import testing_area.Web;
 
 public class Alpha {
 	
@@ -11,11 +12,18 @@ public class Alpha {
 	public String spb = "https://api.hh.ru/vacancies?text=java+junior&area=2&per_page=100";
 	public String mnsk = "https://api.hh.ru/vacancies?text=java+junior&area=1002&per_page=100";
 	
+	String specialization = "";
+	String location = "";
+	String experience = "";
+	String enterprise = "";
+	String text = "";
+	String time = "";
+	
 	Web web = new Web();
 	static String s_file = "";
 	static ArrayList<String> vacancies_id = new ArrayList<String>();
 	
-	Alpha() throws ClassNotFoundException, SQLException{
+	Alpha() throws ClassNotFoundException, SQLException, UnsupportedEncodingException{
 		System.out.println("Interface JS-5");
 	
 		extract_id();
@@ -53,7 +61,7 @@ public class Alpha {
 		System.out.println("..extract_value completed");
 	}
 	
-	public void write_db() throws ClassNotFoundException, SQLException{
+	public void write_db() throws ClassNotFoundException, SQLException, UnsupportedEncodingException{
 		System.out.println();
 		System.out.println("..begin write_db");
 		
@@ -99,7 +107,7 @@ public class Alpha {
 		System.out.println("..method web completed");	
 	}
 	
-public void test2() throws ClassNotFoundException, SQLException{
+public void test2() throws ClassNotFoundException, SQLException, UnsupportedEncodingException{
 		
 		System.out.println("..test2 started");
 		System.out.println();
@@ -122,14 +130,22 @@ public void test2() throws ClassNotFoundException, SQLException{
 				Mars head = js.fromJson(s, Mars.class);
 				
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+				String first_specialization = head.name;
+				byte[] byte_array_specialization = first_specialization.getBytes();
+				String last_spezialization = new String(byte_array_specialization, "utf-8");//преобразовать набор байт, прочитанных из файла в строку
+			
+					
 				
 //System.out.println("location: " + head.area);
 //System.out.println("enterprise: " + head.employer);
 				
 				String f = js.toJson(head.address);
+				
+				
+				
 				String g = js.toJson(head.employer);
 				String e = js.toJson(head.experience);
-				System.out.println("---------------------------------------");
+//System.out.println("---------------------------------------");
 //System.out.println("address: " + f);
 				
 				Venus cry = js.fromJson(f, Venus.class);
@@ -137,8 +153,15 @@ public void test2() throws ClassNotFoundException, SQLException{
 				
 				String loc = js.toJson(head.area);
 				
+//extract location======================================================================
 				Rea place = js.fromJson(loc, Rea.class);
-				String mesto = place.name;
+					String mesto = place.name;
+				
+						byte[] byte_array_location = mesto.getBytes();
+						String last_location = new String(byte_array_location, "utf-8");//преобразовать набор байт, прочитанных из файла в строку
+					//System.out.println(f111);
+				
+				
 //System.out.println("HERE: " + mesto);
 				//************
 				
@@ -152,24 +175,38 @@ public void test2() throws ClassNotFoundException, SQLException{
 
 //System.out.println(head.description);
 				
+//======================================UTF-8=============================================
+//experience
+	String first_experience = phob.name;
+	byte[] byte_array_experience = first_experience.getBytes();
+	String last_experience = new String(byte_array_experience, "utf-8");//преобразовать набор байт, прочитанных из файла в строку
+
+//enterprise
+	String first_enterprise = cr.name;
+	byte[] byte_array_enterprise = first_enterprise.getBytes();
+	String last_enterprise = new String(byte_array_enterprise, "utf-8");//преобразовать набор байт, прочитанных из файла в строку
+	
+//text
+	String first_text = head.description;
+	byte[] byte_array_text = first_text.getBytes();
+	String last_text = new String(byte_array_text, "utf-8");//преобразовать набор байт, прочитанных из файла в строку
+				
+				
+//========================================================================================
+				
 //////////////////////////////////////////////!!!!!!!!!!!!!!WRITE TO DATA BASE!!!!!!!!!!!!!!!!!!!!!
 				
-				String specialization = "";
-				String location = "";
-				String experience = "";
-				String enterprise = "";
-				String text = "";
-				String time = "";
+				
 				
 									////
 									Conn20 conn = new Conn20();
 									////
 				
-					specialization = head.name;
-					location = mesto;
-					experience = phob.name;
-					enterprise = cr.name;
-					text = head.description;
+					specialization = last_spezialization;
+					location = last_location;
+					experience = last_experience;
+					enterprise = last_enterprise;
+					text = last_text;
 					time = time();
 					
 /////////////////////////////////////////////DATA BASE/////////////////////////////////////
@@ -182,7 +219,7 @@ public void test2() throws ClassNotFoundException, SQLException{
 					
 					
 //System.out.println(time + " " + specialization+ " " + location+ " " + enterprise+ " " + experience);
-				System.out.println("Выполнено: " + i + " из: " + vacancies_id.size());
+				System.out.println("complete: " + i + " from: " + vacancies_id.size());
 			}
 
 	}
